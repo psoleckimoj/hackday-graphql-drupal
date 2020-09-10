@@ -28,6 +28,8 @@ const contentItemSchema = `
         summary: String
         thumbnail: String
         media: Media
+        categoryId: Int
+        featuredContentId: Int
         categories: [Category!]!
         secondaryTags: [Category!]!
         establishments: [Establishment!]!

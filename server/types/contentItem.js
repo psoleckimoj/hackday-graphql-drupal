@@ -30,7 +30,7 @@ class ContentItem {
             return new Category({id: secondaryTagId, name: ''});
         });
 
-        this.contentItemMedia = new Media(content.media);
+        this.contentItemMedia = content.media? new Media(content.media) : null;
     }
 
     id() {

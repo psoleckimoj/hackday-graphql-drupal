@@ -11,10 +11,11 @@ const root = {
         const endpoint = `${process.env.DRUPAL_API_ENDPOINT}/${id}`;
 
         if (!id) {
-            console.log(`Requested ${endpoint}`);
+            console.log(`Missing id for ${endpoint}`);
             return null;
         }
 
+        console.log(`Requested ${endpoint}`);
         const response = await client.get(endpoint, prisonId);
 
         if (isResponseEmpty(response)) {
