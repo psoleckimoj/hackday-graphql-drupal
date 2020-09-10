@@ -4,6 +4,7 @@ const {
     parseDrupalResponse,
 } = require('./clients/adapters');
 const { ContentItem } = require('./types/contentItem');
+const { logger } = require('./logger');
 
 const root = {
     content: async ({id, prisonId}) => {
@@ -11,11 +12,10 @@ const root = {
         const endpoint = `${process.env.DRUPAL_API_ENDPOINT}/${id}`;
 
         if (!id) {
-            console.log(`Missing id for ${endpoint}`);
+            logger.error(`Missing id for ${endpoint}`);
             return null;
         }
 
-        console.log(`Requested ${endpoint}`);
         const response = await client.get(endpoint, prisonId);
 
         if (isResponseEmpty(response)) {

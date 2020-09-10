@@ -1,5 +1,6 @@
 const qs = require('qs');
 const { baseClient } = require('./base');
+const { logger } = require('../logger');
 
 class DrupalClient {
   constructor(client = baseClient) {
@@ -16,13 +17,13 @@ class DrupalClient {
     return this.client
       .get(endpoint, { params: newQuery, ...rest })
       .then(res => {
-        console.log(`Requested ${endpoint}?${qs.stringify(newQuery)}`);
+        logger.info(`DrupalClient requested ${endpoint}?${qs.stringify(newQuery)}`);
 
         return res.data;
       })
       .catch(exp => {
-        console.log(`Failed to request ${endpoint}?${qs.stringify(newQuery)}`);
-        console.log(exp);
+        logger.error(`DrupalClient failed to request ${endpoint}?${qs.stringify(newQuery)}`);
+        logger.info(exp);
         return null;
       });
   }
